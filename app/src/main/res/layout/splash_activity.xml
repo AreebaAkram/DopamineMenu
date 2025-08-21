@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#EFEBCE">
+
+<com.airbnb.lottie.LottieAnimationView
+    android:id="@+id/anime"
+    android:layout_width="200dp"
+    android:layout_height="450dp"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:lottie_autoPlay="true"
+    app:lottie_fileName="final.json"
+    android:hardwareAccelerated="true"
+    android:layout_marginTop="80dp"
+    >
+</com.airbnb.lottie.LottieAnimationView>
+
+    <TextView
+        android:id="@+id/welcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#bb8588"
+        android:textSize="35sp"
+        app:layout_constraintTop_toBottomOf="@+id/anime"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        >
+    </TextView>
+    <TextView
+        android:id="@+id/desc"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/welcome"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="15sp"
+        android:textColor="#D8A48F"
+        android:textAlignment="center"
+        android:layout_marginTop="8dp"
+        >
+    </TextView>
+    <Button
+        android:id="@+id/button"
+        android:layout_width="155dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/desc"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="#D7C393"
+        android:textColor="#bb8588"
+        android:layout_margin="40dp"
+        android:textSize="18sp"
+        >
+    </Button>
+</androidx.constraintlayout.widget.ConstraintLayout>

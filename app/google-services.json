@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "686005732468",
+    "project_id": "dopaminemenu-b83a0",
+    "storage_bucket": "dopaminemenu-b83a0.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:686005732468:android:965ae3f4957fbd0befbd21",
+        "android_client_info": {
+          "package_name": "com.example.dopaminemenu"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDwQvQaYlna_OFmcv9PGahyEXOqpx6aNFU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
