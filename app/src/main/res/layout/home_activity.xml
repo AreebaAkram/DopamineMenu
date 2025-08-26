@@ -12,18 +12,20 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
         android:layout_marginTop="12dp"
-        android:layout_marginBottom="12dp"
-        android:backgroundTint="#F6E4CF"
+        android:layout_marginBottom="8dp"
+        android:backgroundTint="#FBF3D5"
         app:cardCornerRadius="18dp"
         app:cardElevation="5dp"
         app:cardMaxElevation="10dp"
-        app:strokeColor="@color/black"
-        app:strokeWidth="2dp">
+        app:strokeColor="#bb8588"
+        app:strokeWidth="1dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:padding="8dp">
 
             <TextView
                 android:id="@+id/mainheading"

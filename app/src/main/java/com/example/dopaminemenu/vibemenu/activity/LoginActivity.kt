@@ -1,13 +1,11 @@
-package com.example.dopaminemenu.vibemenu.login
+package com.example.dopaminemenu.vibemenu.activity
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.dopaminemenu.MainActivity
+
 import com.example.dopaminemenu.databinding.LoginBinding
-import com.example.dopaminemenu.vibemenu.home.HomeActivity
-import com.example.dopaminemenu.vibemenu.signin.SignupActivity
 import com.google.firebase.auth.FirebaseAuth
 
 class LoginActivity() : AppCompatActivity() {
