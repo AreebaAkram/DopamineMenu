@@ -1,6 +1,8 @@
 package com.example.dopaminemenu.vibemenu.adapter
 
 import android.content.Context
+import android.graphics.Color
+import android.graphics.drawable.GradientDrawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -30,15 +32,16 @@ class MainAdapter(val categories: MutableList<Category>) :
         holder.binding.categoryitem = item
         holder.binding.executePendingBindings()
 
-
-//        val colors = listOf(
-//            android.graphics.Color.parseColor("#A2AF9B"),
-//            android.graphics.Color.parseColor("#D5C7A3"),
-//            android.graphics.Color.parseColor("#B4B4B8"),
-//            android.graphics.Color.parseColor("#607274"),
-//            android.graphics.Color.parseColor("#BDB395"),
-//        )
-//        holder.binding.root.setBackgroundColor(colors[position % colors.size])
+        val colors = listOf(
+            android.graphics.Color.parseColor("#E09BA0"),
+            android.graphics.Color.parseColor("#D4B06B"),
+            android.graphics.Color.parseColor("#A67D8A"),
+            android.graphics.Color.parseColor("#A3B18A"),
+            android.graphics.Color.parseColor("#EEC9A1"),
+        )
+        val addbg = holder.binding.addbtn.background.mutate() as GradientDrawable
+        val color = (colors[position % colors.size])
+        addbg.setColor(color)
     }
 
     override fun getItemCount(): Int = categories.size

@@ -17,6 +17,23 @@
             tools:listitem="@layout/home_activity">
 
         </androidx.recyclerview.widget.RecyclerView>
+        
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_nav"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:menu="@menu/bottom_navigation_menu"
+            android:background="?android:attr/windowBackground"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:itemIconTint="#D7C393"
+            app:itemIconSize="45dp"
+            app:labelVisibilityMode="unlabeled"
+            android:backgroundTint="#bb8588"
+
+            >
+        </com.google.android.material.bottomnavigation.BottomNavigationView>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
