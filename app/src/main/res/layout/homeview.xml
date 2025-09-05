@@ -27,10 +27,10 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:itemIconTint="#D7C393"
+            app:itemIconTint="#EFEBCE"
             app:itemIconSize="45dp"
             app:labelVisibilityMode="unlabeled"
-            android:backgroundTint="#bb8588"
+            android:backgroundTint="#A3A380"
 
             >
         </com.google.android.material.bottomnavigation.BottomNavigationView>
