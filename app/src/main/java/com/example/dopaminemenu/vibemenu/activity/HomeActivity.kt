@@ -1,7 +1,9 @@
 package com.example.dopaminemenu.vibemenu.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
+import androidx.activity.result.IntentSenderRequest
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -36,11 +38,15 @@ class HomeActivity : AppCompatActivity() {
         binding.bottomNav.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_home -> {
+                    val intent = Intent(this, HomeActivity::class.java)
+                    startActivity(intent)
                     Toast.makeText(this, "home icon clicked", Toast.LENGTH_SHORT).show()
                     true
                 }
 
                 R.id.nav_add -> {
+                    val intent = Intent(this, AddActivity::class.java)
+                    startActivity(intent)
                     true
                 }
 
