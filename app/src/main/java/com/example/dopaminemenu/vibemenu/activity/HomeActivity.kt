@@ -26,6 +26,12 @@ class HomeActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this)[MainViewModel::class.java]
 
         adapter = MainAdapter(mutableListOf())
+        { category ->
+            val intent = Intent(this, DisplayActivity::class.java)
+            intent.putExtra("categoryName", category.name)
+            startActivity(intent)
+        }
+        binding.itemRv.adapter = adapter
         binding.itemRv.layoutManager = LinearLayoutManager(this)
         binding.itemRv.adapter = adapter
 
@@ -34,6 +40,7 @@ class HomeActivity : AppCompatActivity() {
             adapter.categories.addAll(categories)
             adapter.notifyDataSetChanged()
         }
+
 
         binding.bottomNav.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {

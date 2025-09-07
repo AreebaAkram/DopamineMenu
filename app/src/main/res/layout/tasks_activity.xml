@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
     xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="activity"
+            type="com.example.dopaminemenu.vibemenu.model.Activity" />
+    </data>
 
         <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
@@ -25,7 +30,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="7dp"
                     android:layout_marginTop="3dp"
-                    android:text="name"
+                    android:text="@{activity.name}"
                     android:textColor="#bb8588"
                     android:textSize="20sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -47,7 +52,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="7dp"
                     android:layout_margin="5dp"
-                    android:text="description"
+                    android:text="@{activity.desc}"
                     android:textSize="15sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/taskname"
