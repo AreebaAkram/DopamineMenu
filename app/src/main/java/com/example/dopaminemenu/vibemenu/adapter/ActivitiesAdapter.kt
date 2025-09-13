@@ -3,11 +3,13 @@ package com.example.dopaminemenu.vibemenu.adapter
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dopaminemenu.databinding.TasksActivityBinding
 import com.example.dopaminemenu.vibemenu.model.Activity
+import com.google.firebase.database.DatabaseReference
 
-class ActivitiesAdapter(val activities: MutableList<Activity>) :
+class ActivitiesAdapter(val activities: MutableList<Activity>, private val database : DatabaseReference) :
     RecyclerView.Adapter<ActivitiesAdapter.ViewHolder>() {
 
 
@@ -18,8 +20,21 @@ class ActivitiesAdapter(val activities: MutableList<Activity>) :
             fun bind(item: Activity) {
                 binding.activity = item
                 binding.executePendingBindings()
+                binding.deletebtn.setOnClickListener{
+                    database.child("activities").child(item.name.toString()).removeValue()
+                        .addOnSuccessListener {
+                            Toast.makeText(context, "Deleted ${item.name}", Toast.LENGTH_SHORT).show()
+                            activities.remove(item)
+                            notifyDataSetChanged()
+                        }
+                        .addOnFailureListener {
+                            Toast.makeText(context, "Delete failed", Toast.LENGTH_SHORT).show()
+                        }
             }
-        }
+    }
+            }
+
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
       context = parent.context
@@ -36,6 +51,7 @@ class ActivitiesAdapter(val activities: MutableList<Activity>) :
         val item = activities[position]
         holder.binding.activity = item
         holder.binding.executePendingBindings()
+        holder.bind(item)
 
     }
 }

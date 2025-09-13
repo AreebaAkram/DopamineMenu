@@ -38,7 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="7dp"
-            android:hint="Add your activity"
+            android:hint="Name your activity"
             android:textSize="15sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/taskName" />
@@ -60,7 +60,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="7dp"
-            android:hint="add description"
+            android:hint="Add description"
             android:textSize="15sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/taskDesc" />
@@ -77,13 +77,15 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/taskDesc" />
 
-        <!-- ✅ Spinner instead of TextInputLayout + AutoCompleteTextView -->
+
         <Spinner
             android:id="@+id/spinnerCategory"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="-15dp"
             android:spinnerMode="dropdown"
+            android:textSize="15dp"
+            android:layout_marginStart="5dp"
+            android:background="#EFEBCE"
             app:layout_constraintTop_toBottomOf="@+id/taskCategory" />
 
         <Button

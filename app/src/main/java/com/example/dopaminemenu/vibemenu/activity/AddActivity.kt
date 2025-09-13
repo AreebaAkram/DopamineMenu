@@ -34,6 +34,7 @@ class AddActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         categorySpinner = binding.spinnerCategory
+        categorySpinner.prompt = "Select Category"
         binding.btnAdd.text = "Add"
 
         database = com.google.firebase.Firebase.database.reference
@@ -46,8 +47,8 @@ class AddActivity : AppCompatActivity() {
             categoryNames.clear()
             categoryNames.addAll(categories.map { it.name ?: "" })
 
-            val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, categoryNames)
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            val adapter = ArrayAdapter(this, R.layout.spinner_item, categoryNames)
+            adapter.setDropDownViewResource(R.layout.spinner_dropdown)
             categorySpinner.adapter = adapter
 
             categorySpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {

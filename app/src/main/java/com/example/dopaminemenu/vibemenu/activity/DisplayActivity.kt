@@ -10,12 +10,14 @@ import com.example.dopaminemenu.databinding.DisplayActivityBinding
 import com.example.dopaminemenu.vibemenu.adapter.ActivitiesAdapter
 import com.example.dopaminemenu.vibemenu.adapter.MainAdapter
 import com.example.dopaminemenu.vibemenu.viewmodel.MainViewModel
+import com.google.firebase.database.database
 
 class DisplayActivity : AppCompatActivity() {
 
     private lateinit var binding: DisplayActivityBinding
     private lateinit var adapter: ActivitiesAdapter
     private lateinit var viewModel: MainViewModel
+    private val database = com.google.firebase.Firebase.database.reference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,7 +26,7 @@ class DisplayActivity : AppCompatActivity() {
 
         viewModel = ViewModelProvider(this)[MainViewModel::class.java]
 
-        adapter =  ActivitiesAdapter(mutableListOf())
+        adapter =  ActivitiesAdapter(mutableListOf(), database)
         binding.itemRv.layoutManager = LinearLayoutManager(this)
         binding.itemRv.adapter = adapter
 
