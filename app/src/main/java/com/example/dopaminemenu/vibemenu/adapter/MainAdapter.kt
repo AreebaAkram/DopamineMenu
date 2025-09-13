@@ -9,7 +9,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.dopaminemenu.databinding.HomeActivityBinding
 import com.example.dopaminemenu.vibemenu.model.Category
 
-class MainAdapter(val categories: MutableList<Category>, private val onItemClick: (Category) -> Unit) :
+class MainAdapter(
+    val categories: MutableList<Category>, private val onItemClick: (Category) -> Unit,
+    private val onbtnclick: (Category) -> Unit
+) :
     RecyclerView.Adapter<MainAdapter.ViewHolder>() {
 
     private lateinit var context: Context
@@ -17,14 +20,17 @@ class MainAdapter(val categories: MutableList<Category>, private val onItemClick
 
     inner class ViewHolder(val binding: HomeActivityBinding) :
         RecyclerView.ViewHolder(binding.root) {
-            fun bind(item: Category) {
-                binding.categoryitem = item
-                binding.root.setOnClickListener {
-                    onItemClick(item)
-                }
-                binding.executePendingBindings()
+        fun bind(item: Category) {
+            binding.categoryitem = item
+            binding.root.setOnClickListener {
+                onItemClick(item)
             }
+            binding.addbtn.setOnClickListener {
+                onbtnclick(item)
+            }
+            binding.executePendingBindings()
         }
+    }
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainAdapter.ViewHolder {

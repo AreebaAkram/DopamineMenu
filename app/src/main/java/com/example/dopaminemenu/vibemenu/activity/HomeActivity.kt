@@ -25,12 +25,17 @@ class HomeActivity : AppCompatActivity() {
 
         viewModel = ViewModelProvider(this)[MainViewModel::class.java]
 
-        adapter = MainAdapter(mutableListOf())
-        { category ->
+        adapter = MainAdapter(mutableListOf(),
+        onItemClick = { category ->
             val intent = Intent(this, DisplayActivity::class.java)
             intent.putExtra("categoryName", category.name)
-            startActivity(intent)
-        }
+            startActivity(intent)}
+        ,
+            onbtnclick = { category ->
+                val intent = Intent(this, AddActivity::class.java)
+                intent.putExtra("categoryName", category.name)
+                startActivity(intent)
+            })
         binding.itemRv.adapter = adapter
         binding.itemRv.layoutManager = LinearLayoutManager(this)
         binding.itemRv.adapter = adapter
@@ -42,12 +47,12 @@ class HomeActivity : AppCompatActivity() {
         }
 
 
+
         binding.bottomNav.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_home -> {
                     val intent = Intent(this, HomeActivity::class.java)
                     startActivity(intent)
-                    Toast.makeText(this, "home icon clicked", Toast.LENGTH_SHORT).show()
                     true
                 }
 
