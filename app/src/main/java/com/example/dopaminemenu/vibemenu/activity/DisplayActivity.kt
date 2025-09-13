@@ -23,11 +23,12 @@ class DisplayActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         viewModel = ViewModelProvider(this)[MainViewModel::class.java]
-        adapter =  ActivitiesAdapter(mutableListOf())
 
-        binding.itemRv.adapter = adapter
+        adapter =  ActivitiesAdapter(mutableListOf())
         binding.itemRv.layoutManager = LinearLayoutManager(this)
         binding.itemRv.adapter = adapter
+
+
 
         viewModel.loadActivities().observe(this) { activities ->
             adapter.activities.clear()

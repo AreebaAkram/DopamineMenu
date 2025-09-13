@@ -2,8 +2,6 @@ package com.example.dopaminemenu.vibemenu.activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
-import androidx.activity.result.IntentSenderRequest
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -26,11 +24,11 @@ class HomeActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this)[MainViewModel::class.java]
 
         adapter = MainAdapter(mutableListOf(),
-        onItemClick = { category ->
-            val intent = Intent(this, DisplayActivity::class.java)
-            intent.putExtra("categoryName", category.name)
-            startActivity(intent)}
-        ,
+            onItemClick = { category ->
+                val intent = Intent(this, DisplayActivity::class.java)
+                intent.putExtra("categoryName", category.name)
+                startActivity(intent)
+            },
             onbtnclick = { category ->
                 val intent = Intent(this, AddActivity::class.java)
                 intent.putExtra("categoryName", category.name)
@@ -65,6 +63,7 @@ class HomeActivity : AppCompatActivity() {
                 R.id.nav_profile -> {
                     true
                 }
+
                 else -> false
             }
         }
