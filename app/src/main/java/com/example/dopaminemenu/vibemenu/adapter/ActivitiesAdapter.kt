@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dopaminemenu.databinding.TasksActivityBinding
 import com.example.dopaminemenu.vibemenu.model.Activity
+import com.example.dopaminemenu.vibemenu.model.ActivityState
 import com.google.firebase.database.DatabaseReference
 
 class ActivitiesAdapter(val activities: MutableList<Activity>, private val database : DatabaseReference) :
@@ -31,6 +32,15 @@ class ActivitiesAdapter(val activities: MutableList<Activity>, private val datab
                             Toast.makeText(context, "Delete failed", Toast.LENGTH_SHORT).show()
                         }
             }
+                binding.checkbox.isChecked = item.state == ActivityState.completed
+                binding.checkbox.setOnCheckedChangeListener { _, isChecked ->
+                    if (isChecked) {
+                        database.child("activities").child(item.name.toString()).child("state").setValue(ActivityState.completed)
+                    }
+                    else{
+                        database.child("activities").child(item.name.toString()).child("state").setValue(ActivityState.pending)
+                    }
+                }
     }
             }
 

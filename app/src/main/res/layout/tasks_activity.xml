@@ -71,6 +71,18 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/category" />
 
+            <CheckBox
+                android:id="@+id/checkbox"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:clickable="true"
+                android:focusable="false"
+                android:button="@drawable/circle_selector"
+                app:layout_constraintEnd_toStartOf="@+id/deletebtn"
+                app:layout_constraintTop_toBottomOf="@+id/category"
+                >
+            </CheckBox>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
 

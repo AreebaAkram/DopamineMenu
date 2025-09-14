@@ -9,13 +9,15 @@ import com.example.dopaminemenu.R
 import com.example.dopaminemenu.databinding.DisplayActivityBinding
 import com.example.dopaminemenu.vibemenu.adapter.ActivitiesAdapter
 import com.example.dopaminemenu.vibemenu.adapter.MainAdapter
+import com.example.dopaminemenu.vibemenu.model.ActivityState
 import com.example.dopaminemenu.vibemenu.viewmodel.MainViewModel
 import com.google.firebase.database.database
 
 class DisplayActivity : AppCompatActivity() {
 
     private lateinit var binding: DisplayActivityBinding
-    private lateinit var adapter: ActivitiesAdapter
+    private lateinit var Pendingadapter: ActivitiesAdapter
+    private lateinit var Completedadapter: ActivitiesAdapter
     private lateinit var viewModel: MainViewModel
     private val database = com.google.firebase.Firebase.database.reference
 
@@ -26,16 +28,28 @@ class DisplayActivity : AppCompatActivity() {
 
         viewModel = ViewModelProvider(this)[MainViewModel::class.java]
 
-        adapter =  ActivitiesAdapter(mutableListOf(), database)
+        Pendingadapter =  ActivitiesAdapter(mutableListOf(), database)
+        Completedadapter = ActivitiesAdapter(mutableListOf(), database)
+
         binding.itemRv.layoutManager = LinearLayoutManager(this)
-        binding.itemRv.adapter = adapter
+        binding.itemRv.adapter = Pendingadapter
+
+        binding.completedRv.layoutManager = LinearLayoutManager(this)
+        binding.completedRv.adapter = Completedadapter
+
 
 
 
         viewModel.loadActivities().observe(this) { activities ->
-            adapter.activities.clear()
-            adapter.activities.addAll(activities)
-            adapter.notifyDataSetChanged()
+            val pendingList = activities.filter { it.state == ActivityState.pending }
+            val completedList = activities.filter { it.state == ActivityState.completed }
+            Pendingadapter.activities.clear()
+            Pendingadapter.activities.addAll(pendingList)
+            Pendingadapter.notifyDataSetChanged()
+            Completedadapter.activities.clear()
+            Completedadapter.activities.addAll(completedList)
+            Completedadapter.notifyDataSetChanged()
+
         }
 
 
