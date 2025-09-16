@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.dopaminemenu.R
 import com.example.dopaminemenu.databinding.AddoneActivityBinding
 import com.example.dopaminemenu.vibemenu.model.Activity
+import com.example.dopaminemenu.vibemenu.model.ActivityState
 import com.example.dopaminemenu.vibemenu.model.Category
 import com.example.dopaminemenu.vibemenu.viewmodel.MainViewModel
 import com.google.firebase.database.DatabaseReference
@@ -70,9 +71,11 @@ class AddActivity : AppCompatActivity() {
         binding.btnAdd.setOnClickListener {
             val name = binding.edtTaskName.text.toString()
             val desc = binding.edtTaskDesc.text.toString()
+            val category = selectedCategory
+            val state = ActivityState.pending
 
-            if (name.isNotBlank() && desc.isNotBlank() && selectedCategory != null) {
-                writeNewActivity(name, desc, selectedCategory!!)
+            if (name.isNotBlank() && desc.isNotBlank() && category != null) {
+                writeNewActivity(name, desc, selectedCategory!!, state)
             } else {
                 Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show()
             }
@@ -100,9 +103,8 @@ class AddActivity : AppCompatActivity() {
             }
         }
     }
-
-    private fun writeNewActivity(name: String, desc: String, category: Category) {
-        val activity = Activity(name, desc, category)
+    private fun writeNewActivity(name: String, desc: String, category: Category, state: ActivityState = ActivityState.pending) {
+        val activity = Activity(name, desc, category, state)
 
         database.child("activities").child(name).setValue(activity)
             .addOnSuccessListener {

@@ -38,11 +38,18 @@ class DisplayActivity : AppCompatActivity() {
         binding.completedRv.adapter = Completedadapter
 
 
-
+        val categoryName = intent.getStringExtra("categoryName") ?: ""
 
         viewModel.loadActivities().observe(this) { activities ->
-            val pendingList = activities.filter { it.state == ActivityState.pending }
-            val completedList = activities.filter { it.state == ActivityState.completed }
+
+            val pendingList = activities.filter {
+                it.state == ActivityState.pending && it.category?.name == categoryName
+            }
+            val completedList = activities.filter {
+                it.state == ActivityState.completed && it.category?.name == categoryName
+            }
+//            val pendingList = activities.filter { it.state == ActivityState.pending }
+//            val completedList = activities.filter { it.state == ActivityState.completed }
             Pendingadapter.activities.clear()
             Pendingadapter.activities.addAll(pendingList)
             Pendingadapter.notifyDataSetChanged()
