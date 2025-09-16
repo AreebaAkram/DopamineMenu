@@ -68,6 +68,7 @@ class AddActivity : AppCompatActivity() {
             }
         }
 
+
         binding.btnAdd.setOnClickListener {
             val name = binding.edtTaskName.text.toString()
             val desc = binding.edtTaskDesc.text.toString()

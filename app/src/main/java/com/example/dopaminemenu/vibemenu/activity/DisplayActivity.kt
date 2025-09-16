@@ -27,6 +27,8 @@ class DisplayActivity : AppCompatActivity() {
         binding = DisplayActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.heading.text = intent.getStringExtra("categoryName")
+
         viewModel = ViewModelProvider(this)[MainViewModel::class.java]
 
         Pendingadapter =  ActivitiesAdapter(mutableListOf(), database)

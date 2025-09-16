@@ -14,7 +14,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:padding="8dp"
-        android:text="Activities"
         android:textColor="#bb8588"
         android:textSize="35sp"
         android:textStyle="bold"
