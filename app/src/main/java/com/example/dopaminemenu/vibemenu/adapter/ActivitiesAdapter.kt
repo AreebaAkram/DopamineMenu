@@ -32,12 +32,17 @@ class ActivitiesAdapter(val activities: MutableList<Activity>, private val datab
                             Toast.makeText(context, "Delete failed", Toast.LENGTH_SHORT).show()
                         }
             }
+                binding.checkbox.setOnCheckedChangeListener(null)
                 binding.checkbox.isChecked = item.state == ActivityState.completed
+
                 binding.checkbox.setOnCheckedChangeListener { _, isChecked ->
                     if (isChecked) {
+                        item.state = ActivityState.completed
                         database.child("activities").child(item.name.toString()).child("state").setValue(ActivityState.completed)
+                        Toast.makeText(context, "Completed ${item.name}", Toast.LENGTH_SHORT).show()
                     }
                     else{
+                        item.state = ActivityState.pending
                         database.child("activities").child(item.name.toString()).child("state").setValue(ActivityState.pending)
                     }
                 }
