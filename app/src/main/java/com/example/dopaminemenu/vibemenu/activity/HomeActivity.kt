@@ -1,5 +1,6 @@
 package com.example.dopaminemenu.vibemenu.activity
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -16,6 +17,7 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var viewModel: MainViewModel
     private lateinit var adapter: MainAdapter
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = HomeviewBinding.inflate(layoutInflater)

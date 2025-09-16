@@ -108,7 +108,9 @@ class AddActivity : AppCompatActivity() {
 
         database.child("activities").child(name).setValue(activity)
             .addOnSuccessListener {
+                Toast.makeText(this, "Activity added successfully", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, DisplayActivity::class.java)
+                intent.putExtra("categoryName", category.name)
                 startActivity(intent)
                 finish()
             }

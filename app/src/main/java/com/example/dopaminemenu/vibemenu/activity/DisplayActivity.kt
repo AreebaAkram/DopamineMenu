@@ -1,5 +1,6 @@
 package com.example.dopaminemenu.vibemenu.activity
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -8,7 +9,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dopaminemenu.R
 import com.example.dopaminemenu.databinding.DisplayActivityBinding
 import com.example.dopaminemenu.vibemenu.adapter.ActivitiesAdapter
-import com.example.dopaminemenu.vibemenu.adapter.MainAdapter
 import com.example.dopaminemenu.vibemenu.model.ActivityState
 import com.example.dopaminemenu.vibemenu.viewmodel.MainViewModel
 import com.google.firebase.database.database
@@ -21,6 +21,7 @@ class DisplayActivity : AppCompatActivity() {
     private lateinit var viewModel: MainViewModel
     private val database = com.google.firebase.Firebase.database.reference
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DisplayActivityBinding.inflate(layoutInflater)
@@ -48,8 +49,6 @@ class DisplayActivity : AppCompatActivity() {
             val completedList = activities.filter {
                 it.state == ActivityState.completed && it.category?.name == categoryName
             }
-//            val pendingList = activities.filter { it.state == ActivityState.pending }
-//            val completedList = activities.filter { it.state == ActivityState.completed }
             Pendingadapter.activities.clear()
             Pendingadapter.activities.addAll(pendingList)
             Pendingadapter.notifyDataSetChanged()
