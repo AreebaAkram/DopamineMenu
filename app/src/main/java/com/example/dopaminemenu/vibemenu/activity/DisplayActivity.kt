@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dopaminemenu.R
 import com.example.dopaminemenu.databinding.DisplayActivityBinding
 import com.example.dopaminemenu.vibemenu.adapter.ActivitiesAdapter
+import com.example.dopaminemenu.vibemenu.model.Activity
 import com.example.dopaminemenu.vibemenu.model.ActivityState
 import com.example.dopaminemenu.vibemenu.viewmodel.MainViewModel
 import com.google.firebase.database.database
@@ -45,10 +46,28 @@ class DisplayActivity : AppCompatActivity() {
 
         viewModel.loadActivities().observe(this) { activities ->
 
-            val pendingList = activities.filter {
+            val now = System.currentTimeMillis()
+            val expired = mutableListOf<Activity>()
+
+            for (activity in activities) {
+                if (activity.state == ActivityState.completed) {
+                    val completedAt = activity.completedAt ?: 0L
+                    val shouldDelete = (now - completedAt) >= (24 * 60 * 60 * 1000)
+
+                    if (shouldDelete) {
+                        expired.add(activity)
+                        // also delete from Firebase
+                        database.child("activities").child(activity.name!!).removeValue()
+                    }
+                }
+            }
+
+            val validActivities = activities - expired.toSet()
+
+            val pendingList = validActivities.filter {
                 it.state == ActivityState.pending && it.category?.name == categoryName
             }
-            val completedList = activities.filter {
+            val completedList = validActivities.filter {
                 it.state == ActivityState.completed && it.category?.name == categoryName
             }
             Pendingadapter.activities.clear()

@@ -38,14 +38,19 @@ class ActivitiesAdapter(val activities: MutableList<Activity>, private val datab
                 binding.checkbox.setOnCheckedChangeListener { _, isChecked ->
                     if (isChecked) {
                         item.state = ActivityState.completed
-                        database.child("activities").child(item.name.toString()).child("state").setValue(ActivityState.completed)
-                        Toast.makeText(context, "Completed ${item.name}", Toast.LENGTH_SHORT).show()
-                    }
-                    else{
+                        item.completedAt = System.currentTimeMillis()
+                        database.child("activities").child(item.name.toString())
+                            .setValue(item)   // save full object with state + completedAt
+                            .addOnSuccessListener {
+                                Toast.makeText(context, "Completed ${item.name}", Toast.LENGTH_SHORT).show()
+                            }
+                    } else {
                         item.state = ActivityState.pending
-                        database.child("activities").child(item.name.toString()).child("state").setValue(ActivityState.pending)
-                    }
-                }
+                        item.completedAt = null  // reset timestamp when going back to pending
+
+                        database.child("activities").child(item.name.toString())
+                            .setValue(item)   // save full object with state reset
+                    }}
     }
             }
 
