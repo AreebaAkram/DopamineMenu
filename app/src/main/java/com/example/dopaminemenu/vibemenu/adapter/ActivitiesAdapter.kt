@@ -21,6 +21,13 @@ class ActivitiesAdapter(val activities: MutableList<Activity>, private val datab
             fun bind(item: Activity) {
                 binding.activity = item
                 binding.executePendingBindings()
+
+                if(item.state == ActivityState.completed){
+                  binding.taskname.paintFlags = android.graphics.Paint.STRIKE_THRU_TEXT_FLAG
+                }
+                else{
+                    binding.taskname.paintFlags = 0
+                }
                 binding.deletebtn.setOnClickListener{
                     database.child("activities").child(item.name.toString()).removeValue()
                         .addOnSuccessListener {
@@ -39,17 +46,18 @@ class ActivitiesAdapter(val activities: MutableList<Activity>, private val datab
                     if (isChecked) {
                         item.state = ActivityState.completed
                         item.completedAt = System.currentTimeMillis()
+
                         database.child("activities").child(item.name.toString())
-                            .setValue(item)   // save full object with state + completedAt
+                            .setValue(item)
                             .addOnSuccessListener {
                                 Toast.makeText(context, "Completed ${item.name}", Toast.LENGTH_SHORT).show()
                             }
                     } else {
                         item.state = ActivityState.pending
-                        item.completedAt = null  // reset timestamp when going back to pending
+                        item.completedAt = null
 
                         database.child("activities").child(item.name.toString())
-                            .setValue(item)   // save full object with state reset
+                            .setValue(item) 
                     }}
     }
             }

@@ -56,7 +56,6 @@ class DisplayActivity : AppCompatActivity() {
 
                     if (shouldDelete) {
                         expired.add(activity)
-                        // also delete from Firebase
                         database.child("activities").child(activity.name!!).removeValue()
                     }
                 }
