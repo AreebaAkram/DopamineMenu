@@ -63,6 +63,8 @@ class HomeActivity : AppCompatActivity() {
                 }
 
                 R.id.nav_profile -> {
+                    val intent = Intent(this, UserProfile::class.java)
+                    startActivity(intent)
                     true
                 }
 

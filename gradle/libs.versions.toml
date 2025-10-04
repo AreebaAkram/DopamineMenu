@@ -1,15 +1,20 @@
 [versions]
 agp = "8.8.2"
 #kotlin = "1.9.24"
+cardview = "1.0.0"
+circleimageview = "3.1.0"
+glide = "4.16.0"
 kotlin = "2.1.10"
 coreKtx = "1.16.0"
 junit = "4.13.2"
 junitVersion = "1.3.0"
 espressoCore = "3.7.0"
 appcompat = "1.7.1"
+lottie = "6.6.6"
 material = "1.12.0"
 activity = "1.10.1"
 constraintlayout = "2.2.1"
+materialVersion = "1.0.0"
 navigationFragmentKtx = "2.9.3"
 navigationUiKtx = "2.9.3"
 databindingRuntime = "8.12.0"
@@ -33,10 +38,17 @@ recyclerview = "1.4.0"
 recyclerviewVersion = "1.4.0"
 firebaseFirestore = "26.0.0"
 firebaseDatabase = "22.0.0"
+firebaseStorageKtx = "22.0.1"
 
 [libraries]
 
 
+androidx-cardview = { module = "androidx.cardview:cardview", version.ref = "cardview" }
+circleimageview = { module = "de.hdodenhof:circleimageview", version.ref = "circleimageview" }
+glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
+google-firebase-storage-ktx = { module = "com.google.firebase:firebase-storage-ktx" }
+lottie = { module = "com.airbnb.android:lottie", version.ref = "lottie" }
+material-v100 = { module = "com.google.android.material:material", version.ref = "materialVersion" }
 room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
 room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
 room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
@@ -80,6 +92,7 @@ googleid = { group = "com.google.android.libraries.identity.googleid", name = "g
 androidx-recyclerview = { group = "androidx.recyclerview", name = "recyclerview", version.ref = "recyclerviewVersion" }
 firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore", version.ref = "firebaseFirestore" }
 firebase-database = { group = "com.google.firebase", name = "firebase-database", version.ref = "firebaseDatabase" }
+firebase-storage-ktx = { group = "com.google.firebase", name = "firebase-storage-ktx", version.ref = "firebaseStorageKtx" }
 
 
 

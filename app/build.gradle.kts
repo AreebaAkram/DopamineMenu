@@ -45,13 +45,20 @@ android {
 }
 
 dependencies {
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.recyclerview)
+
+    // Firebase BOM (only once)
+    implementation(platform("com.google.firebase:firebase-bom:34.3.0"))
+
+    // Firebase libraries
     implementation(libs.firebase.firestore)
     implementation(libs.firebase.database)
+    implementation(libs.firebase.auth)
+
+
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
@@ -74,22 +81,20 @@ dependencies {
     implementation(libs.androidx.lifecycle.common.java8)
     implementation(libs.androidx.lifecycle.livedata.ktx)
 
-    implementation ("com.github.bumptech.glide:glide:4.16.0")
+    // Glide
+    implementation(libs.glide)
+    kapt("com.github.bumptech.glide:compiler:4.16.0")
 
-    implementation("com.airbnb.android:lottie:6.6.6")
+    // Lottie animations
+    implementation(libs.lottie)
 
-    implementation("androidx.cardview:cardview:1.0.0")
+    implementation(libs.androidx.cardview)
 
-    implementation(libs.firebase.auth)
     implementation(libs.androidx.credentials)
     implementation(libs.androidx.credentials.play.services.auth)
     implementation(libs.googleid)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
 
+    implementation(libs.circleimageview)
 
-    implementation("com.google.android.material:material:1.0.0")
-
-
+    implementation(libs.material.v100)
 }
