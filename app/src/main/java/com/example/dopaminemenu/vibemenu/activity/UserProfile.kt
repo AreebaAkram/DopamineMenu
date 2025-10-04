@@ -7,12 +7,17 @@ import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.util.Base64
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import com.example.dopaminemenu.R
 import com.example.dopaminemenu.databinding.UserProfileBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import java.io.ByteArrayOutputStream
 
 class UserProfile : AppCompatActivity() {
@@ -21,17 +26,49 @@ class UserProfile : AppCompatActivity() {
     private var imageUri: Uri? = null
     private val userId = FirebaseAuth.getInstance().currentUser?.uid ?: "test_user"
     private val dbRef = FirebaseDatabase.getInstance().getReference("users")
+    private lateinit var completed: TextView
+    private lateinit var pending: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = UserProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        // Load profile if exists
         loadProfileImage()
 
         binding.editIcon.setOnClickListener {
             pickImage()
+        }
+
+        binding.tasks.setText("Tasks Overview")
+        binding.statsview.completed.setText("Completed")
+        binding.statsview.pending.setText("Pending")
+        completed = binding.statsview.numcompleted
+        pending = binding.statsview.numpending
+        loadStats()
+
+
+        binding.bottomNav.setOnNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.nav_home -> {
+                    val intent = Intent(this, HomeActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
+
+                R.id.nav_add -> {
+                    val intent = Intent(this, AddActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
+
+                R.id.nav_profile -> {
+                    val intent = Intent(this, UserProfile::class.java)
+                    startActivity(intent)
+                    true
+                }
+
+                else -> false
+            }
         }
     }
 
@@ -84,7 +121,6 @@ class UserProfile : AppCompatActivity() {
             }
     }
 
-    // Load image from Firebase when opening profile
     private fun loadProfileImage() {
         dbRef.child(userId).child("profileImage").get()
             .addOnSuccessListener { snapshot ->
@@ -95,7 +131,38 @@ class UserProfile : AppCompatActivity() {
                 }
             }
             .addOnFailureListener {
-                Toast.makeText(this, "Failed to load profile: ${it.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Failed to load profile: ${it.message}", Toast.LENGTH_SHORT)
+                    .show()
             }
     }
+
+    private fun loadStats() {
+        val activitiesRef = FirebaseDatabase.getInstance().getReference("activities")
+
+        activitiesRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                var completedCount = 0
+                var pendingCount = 0
+
+                for (activitySnapshot in snapshot.children) {
+                    val state = activitySnapshot.child("state").getValue(String::class.java)
+                    if (state == "completed") {
+                        completedCount++
+                    } else if (state == "pending") {
+                        pendingCount++
+                    }
+                }
+
+                completed.text = completedCount.toString()
+                pending.text = pendingCount.toString()
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(this@UserProfile, "Error: ${error.message}", Toast.LENGTH_SHORT)
+                    .show()
+            }
+        })
+    }
+
+
 }
