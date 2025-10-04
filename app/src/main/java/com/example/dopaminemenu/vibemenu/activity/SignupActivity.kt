@@ -28,7 +28,7 @@ class SignupActivity : AppCompatActivity() {
         binding?.loginbtn?.setText("Already have an account? Login")
 
         binding?.loginbtn?.setOnClickListener() {
-            val intent = Intent(this, LoginActivity::class.java)
+            val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
         }
 

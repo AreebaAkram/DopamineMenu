@@ -19,4 +19,7 @@ class MainViewModel : ViewModel() {
         return activities.loadActivities()
 
     }
+    fun addCategory(category: Category, onResult: (Boolean) -> Unit) {
+        repo.addCategory(category, onResult)
+    }
 }

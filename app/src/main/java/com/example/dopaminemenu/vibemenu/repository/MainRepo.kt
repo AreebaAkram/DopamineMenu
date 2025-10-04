@@ -30,4 +30,16 @@ class MainRepo() {
         })
         return mutableData
     }
+    fun addCategory(category: Category, onResult: (Boolean) -> Unit) {
+        val ref = firebaseDatabase.getReference("Category")
+        val id = ref.push().key
+        if (id != null) {
+            ref.child(id).setValue(category)
+                .addOnSuccessListener { onResult(true) }
+                .addOnFailureListener { onResult(false) }
+        } else {
+            onResult(false)
+        }
+    }
+
 }

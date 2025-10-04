@@ -7,12 +7,17 @@ import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.util.Base64
+import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import com.example.dopaminemenu.R
 import com.example.dopaminemenu.databinding.UserProfileBinding
+import com.example.dopaminemenu.vibemenu.model.Category
+import com.example.dopaminemenu.vibemenu.viewmodel.MainViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -21,6 +26,12 @@ import com.google.firebase.database.ValueEventListener
 import java.io.ByteArrayOutputStream
 
 class UserProfile : AppCompatActivity() {
+
+    private lateinit var viewModel: MainViewModel
+    private lateinit var edtCategoryName: EditText
+    private lateinit var edtCategoryDesc: EditText
+    private lateinit var edtCategoryTime: EditText
+    private lateinit var btnAddCategory: Button
 
     private lateinit var binding: UserProfileBinding
     private var imageUri: Uri? = null
@@ -42,8 +53,41 @@ class UserProfile : AppCompatActivity() {
         binding.tasks.setText("Tasks Overview")
         binding.statsview.completed.setText("Completed")
         binding.statsview.pending.setText("Pending")
+        binding.addH1.setText("Add Custom Category")
         completed = binding.statsview.numcompleted
         pending = binding.statsview.numpending
+
+        viewModel = ViewModelProvider(this)[MainViewModel::class.java]
+
+        edtCategoryName = findViewById(R.id.addcategory)
+        btnAddCategory = findViewById(R.id.addbtn)
+        edtCategoryDesc = findViewById(R.id.addDesc)
+        edtCategoryTime = findViewById(R.id.addtime)
+
+        btnAddCategory.setOnClickListener {
+            val name = edtCategoryName.text.toString().trim()
+            val desc = edtCategoryDesc.text.toString().trim()
+            val time = edtCategoryTime.text.toString().trim()
+
+            if (name.isNotEmpty()) {
+                val category = Category(name = name, desc = desc, time = "0" )
+                viewModel.addCategory(category) { success ->
+                    if (success) {
+                        Toast.makeText(this, "Category added!", Toast.LENGTH_SHORT).show()
+                        edtCategoryName.text.clear()
+                        edtCategoryDesc.text.clear()
+                        edtCategoryTime.text.clear()
+                    } else {
+                        Toast.makeText(this, "Failed to add category", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            } else {
+                Toast.makeText(this, "Enter category name", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+
+
         loadStats()
 
 
@@ -90,13 +134,11 @@ class UserProfile : AppCompatActivity() {
         pickImageLauncher.launch(intent)
     }
 
-    // Convert Uri → Bitmap
     private fun uriToBitmap(uri: Uri): Bitmap {
         val inputStream = contentResolver.openInputStream(uri)
         return BitmapFactory.decodeStream(inputStream)
     }
 
-    // Convert Bitmap → Base64 String
     private fun bitmapToBase64(bitmap: Bitmap): String {
         val byteArrayOutputStream = ByteArrayOutputStream()
         bitmap.compress(Bitmap.CompressFormat.JPEG, 50, byteArrayOutputStream)
@@ -104,13 +146,11 @@ class UserProfile : AppCompatActivity() {
         return Base64.encodeToString(byteArray, Base64.DEFAULT)
     }
 
-    // Convert Base64 → Bitmap
     private fun base64ToBitmap(base64Str: String): Bitmap {
         val decodedBytes = Base64.decode(base64Str, Base64.DEFAULT)
         return BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.size)
     }
 
-    // Save Base64 image string into Firebase Realtime Database
     private fun saveImageToRealtimeDB(base64Image: String) {
         dbRef.child(userId).child("profileImage").setValue(base64Image)
             .addOnSuccessListener {
