@@ -61,6 +61,10 @@ class UserProfile : AppCompatActivity() {
             val intent = Intent(this, AddCategory::class.java)
             startActivity(intent)
         }
+        binding.abt.setOnClickListener{
+            val intent = Intent(this, AboutActivity::class.java)
+            startActivity(intent)
+        }
 
         binding.categories.btn1.setText("Entress")
         binding.categories.btn2.setText("Main")

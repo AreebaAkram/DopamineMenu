@@ -49,6 +49,9 @@
         <activity android:name=".vibemenu.activity.AddCategory"
             android:exported="true">
         </activity>
+        <activity android:name=".vibemenu.activity.AboutActivity"
+            android:exported="true">
+        </activity>
     </application>
 
 </manifest>

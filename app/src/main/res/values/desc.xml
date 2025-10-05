@@ -1,0 +1,21 @@
+<resources>
+    <string name="dopamine_menu_description">
+        Dopamine Menu is designed to help you track and balance your daily activities
+        that stimulate motivation, pleasure, and satisfaction. It’s based on the idea
+        of managing dopamine, which is the brain’s “reward chemical”, in a healthy and productive way.
+
+        This concept was first introduced by Jessica MCcabe to help ADHD people to manage
+        their Dopamine levels on daily basis. It consist of 5 main categories which are
+        1. Entrees - Quick wins
+        2. Main - Satisfying activities for deep fulfillment
+        3. Specials - Occasional activities
+        4. Sides - Small additions to major tasks
+        5. Desserts - Sweet treats
+
+        You can create custom categories, add personal goals, track habits, and monitor
+        your progress over time. The app encourages mindful use of dopamine by replacing
+        instant gratification with meaningful, goal-driven actions.
+
+        By using Dopamine Menu, you build awareness of what truly energizes and fulfills
+        you, helping you rewire your reward system for long-term happiness.</string>
+</resources>
