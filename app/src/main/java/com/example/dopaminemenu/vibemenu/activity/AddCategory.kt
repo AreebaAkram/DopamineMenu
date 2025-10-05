@@ -1,5 +1,6 @@
 package com.example.dopaminemenu.vibemenu.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -25,11 +26,15 @@ class AddCategory: AppCompatActivity() {
         setContentView(binding.root)
         viewModel = ViewModelProvider(this)[MainViewModel::class.java]
 
-        binding.addH2.setText("Add Custom Category")
-        edtCategoryName = binding.addcategory
+        binding.addH2.setText("Add Category")
+        edtCategoryName = binding.edtcategoryName
         btnAddCategory = binding.addbtn
-        edtCategoryDesc = binding.addDesc
-        edtCategoryTime = binding.addtime
+        edtCategoryDesc = binding.edtcategorydesc
+        edtCategoryTime = binding.edttime
+
+        binding.categoryname.text = "Name"
+        binding.categorydesc.text = "Description"
+        binding.categorytime.text = "Time"
 
         btnAddCategory.setOnClickListener {
             val name = edtCategoryName.text.toString().trim()
@@ -50,6 +55,29 @@ class AddCategory: AppCompatActivity() {
                 }
             } else {
                 Toast.makeText(this, "Enter category name", Toast.LENGTH_SHORT).show()
+            }
+        }
+        binding.bottomNav.setOnNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.nav_home -> {
+                    val intent = Intent(this, HomeActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
+
+                R.id.nav_add -> {
+                    val intent = Intent(this, AddActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
+
+                R.id.nav_profile -> {
+                    val intent = Intent(this, UserProfile::class.java)
+                    startActivity(intent)
+                    true
+                }
+
+                else -> false
             }
         }
     }

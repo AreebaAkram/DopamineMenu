@@ -53,7 +53,7 @@
         app:layout_constraintTop_toBottomOf="@+id/desc"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:background="#D7C393"
+        android:background="@drawable/button_background"
         android:textColor="#bb8588"
         android:layout_margin="40dp"
         android:textSize="18sp"

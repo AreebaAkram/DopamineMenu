@@ -37,6 +37,10 @@ class AddActivity : AppCompatActivity() {
         categorySpinner = binding.spinnerCategory
         categorySpinner.prompt = "Select Category"
         binding.btnAdd.text = "Add"
+        binding.h1.text = "Add Activity"
+        binding.taskName.text = "Activity"
+        binding.taskDesc.text = "Description"
+        binding.taskCategory.text = "Category"
 
         database = com.google.firebase.Firebase.database.reference
         viewmodel = ViewModelProvider(this)[MainViewModel::class.java]

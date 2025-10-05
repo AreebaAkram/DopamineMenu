@@ -6,7 +6,21 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#EFEBCE"
-        android:padding="5dp">
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/activityname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="35sp"
+            android:textColor="#bb8588"
+            android:textStyle="bold"
+            android:layout_marginTop="18dp"
+            android:layout_marginStart="7dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            >
+        </TextView>
 
 
         <de.hdodenhof.circleimageview.CircleImageView
@@ -17,7 +31,7 @@
             android:background="@drawable/profile_bg"
             android:elevation="4dp"
             android:scaleType="centerCrop"
-            android:layout_marginTop="55dp"
+            android:layout_marginTop="90dp"
             android:src="@drawable/user_placeholder"
             app:civ_border_color="#A3A380"
             app:civ_border_width="2dp"
@@ -43,6 +57,7 @@
             android:layout_height="wrap_content"
             android:text="Hi!"
             android:textSize="35sp"
+            android:textStyle="bold"
             android:textColor="#bb8588"
             app:layout_constraintTop_toBottomOf="@+id/profileImage"
             app:layout_constraintStart_toStartOf="parent"
@@ -67,6 +82,7 @@
             layout="@layout/statcardview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
             app:layout_constraintTop_toBottomOf="@+id/tasks"
            >
         </include>
@@ -77,11 +93,13 @@
             android:textSize="18sp"
             android:background="@drawable/button_background"
             android:textColor="#bb8588"
-            android:layout_margin="9dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="9dp"
+            android:layout_marginEnd="9dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/statsview"
-            android:layout_marginBottom="20dp"
+
             >
         </Button>
 
@@ -92,7 +110,7 @@
             android:textSize="20sp"
             android:textColor="#bb8588"
             android:textStyle="bold"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="20dp"
             android:layout_marginStart="7dp"
             app:layout_constraintTop_toBottomOf="@+id/abt"
             app:layout_constraintStart_toStartOf="parent"
@@ -103,6 +121,7 @@
           layout="@layout/categories"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
+          android:layout_marginTop="5dp"
           app:layout_constraintTop_toBottomOf="@+id/addH1"
           app:layout_constraintStart_toStartOf="parent"
           >
@@ -116,6 +135,7 @@
             android:background="@drawable/button_background"
             android:textColor="#bb8588"
             android:layout_margin="9dp"
+            android:layout_marginTop="15dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/categories"

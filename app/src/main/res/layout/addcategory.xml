@@ -4,16 +4,18 @@
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#EFEBCE"
+        android:padding="10dp">
 
         <TextView
             android:id="@+id/addH2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="7dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="18dp"
             android:textColor="#bb8588"
-            android:textSize="20sp"
+            android:textSize="35sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -28,36 +30,79 @@
             android:padding="10dp"
             app:layout_constraintTop_toBottomOf="@+id/addH2">
 
+            <TextView
+                android:id="@+id/categoryname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="15dp"
+                android:textColor="#bb8588"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/addh2" />
 
             <EditText
-                android:id="@+id/addcategory"
+                android:id="@+id/edtcategoryName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/edittext_rounded"
+                android:layout_marginStart="7dp"
                 android:hint="Add Category Name"
-                android:padding="12dp"
-                android:textSize="15sp" />
+                android:layout_marginTop="5dp"
+                android:background="@drawable/edittext_rounded"
+                android:textSize="15sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/categoryname" />
+
+            <TextView
+                android:id="@+id/categorydesc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="20dp"
+                android:textColor="#bb8588"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edtcategoryName" />
 
             <EditText
-                android:id="@+id/addDesc"
+                android:id="@+id/edtcategorydesc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/edittext_rounded"
+                android:layout_marginStart="7dp"
                 android:hint="Add Category Description"
-                android:padding="12dp"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/edittext_rounded"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/categorydesc" />
+
+            <TextView
+                android:id="@+id/categorytime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="20dp"
+                android:textColor="#bb8588"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edtcategorydesc" />
+
 
             <EditText
-                android:id="@+id/addtime"
+                android:id="@+id/edttime"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/edittext_rounded"
+                android:layout_marginStart="7dp"
                 android:hint="Add Category Time"
-                android:padding="12dp"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/edittext_rounded"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/categorytime" />
+
 
         </LinearLayout>
 
@@ -70,10 +115,24 @@
             android:text="Add"
             android:textColor="#bb8588"
             android:textSize="18sp"
+            android:layout_margin="40dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edttxt">
         </Button>
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_nav"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="?android:attr/windowBackground"
+            android:backgroundTint="#EFEBCE"
+            app:itemIconSize="45dp"
+            app:itemIconTint="#A3A380"
+            app:labelVisibilityMode="unlabeled"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:menu="@menu/bottom_navigation_menu" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

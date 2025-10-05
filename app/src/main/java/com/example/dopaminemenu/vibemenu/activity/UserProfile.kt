@@ -66,9 +66,34 @@ class UserProfile : AppCompatActivity() {
         binding.categories.btn3.setText("Specials")
         binding.categories.btn4.setText("Sides")
         binding.categories.btn5.setText("Desserts")
+        binding.activityname.text = "Profile"
 
 
-
+        binding.categories.imgBtn1.setOnClickListener{
+            val intent = Intent(this, DisplayActivity::class.java)
+            intent.putExtra("categoryName", "Entress")
+            startActivity(intent)
+        }
+        binding.categories.imgBtn2.setOnClickListener{
+            val intent = Intent(this, DisplayActivity::class.java)
+            intent.putExtra("categoryName", "Main")
+            startActivity(intent)
+        }
+        binding.categories.imgBtn3.setOnClickListener{
+            val intent = Intent(this, DisplayActivity::class.java)
+            intent.putExtra("categoryName", "Specials")
+            startActivity(intent)
+        }
+        binding.categories.imgBtn4.setOnClickListener{
+            val intent = Intent(this, DisplayActivity::class.java)
+            intent.putExtra("categoryName", "Sides")
+            startActivity(intent)
+        }
+        binding.categories.imgBtn5.setOnClickListener{
+            val intent = Intent(this, DisplayActivity::class.java)
+            intent.putExtra("categoryName", "Desserts")
+            startActivity(intent)
+        }
 
 
         loadStats()
