@@ -53,10 +53,11 @@ class UserProfile : AppCompatActivity() {
         binding.addH1.setText("Manage Categories")
         completed = binding.statsview.numcompleted
         pending = binding.statsview.numpending
-        binding.addbtn.setText("Add Custom Category")
+        binding.cardstack.customcat.setText("Add Custom Category")
+        binding.cardstack.delcat.setText("Delete Category")
         binding.abt.setText("LEARN ABOUT DOPAMINE MENU")
 
-        binding.addbtn.setOnClickListener{
+        binding.cardstack.cardOne.setOnClickListener{
             val intent = Intent(this, AddCategory::class.java)
             startActivity(intent)
         }
