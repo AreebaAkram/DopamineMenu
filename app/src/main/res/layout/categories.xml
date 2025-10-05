@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/imageButtonRow"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center"
+    android:padding="8dp"
+    android:weightSum="5"
+    android:background="#EFEBCE">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <ImageButton
+            android:id="@+id/imgBtn1"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/playful"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Entress"
+            android:scaleType="centerInside"
+            android:padding="10dp" />
+
+        <TextView
+            android:id="@+id/btn1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="13sp"
+            android:textColor="#444"
+            android:layout_marginTop="4dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <ImageButton
+            android:id="@+id/imgBtn2"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/working"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Main"
+            android:scaleType="centerInside"
+            android:padding="10dp" />
+
+        <TextView
+            android:id="@+id/btn2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="13sp"
+            android:textColor="#444"
+            android:layout_marginTop="4dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <ImageButton
+            android:id="@+id/imgBtn3"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/confetti"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Special"
+            android:scaleType="centerInside"
+            android:padding="10dp" />
+
+        <TextView
+            android:id="@+id/btn3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="13sp"
+            android:textColor="#444"
+            android:layout_marginTop="4dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <ImageButton
+            android:id="@+id/imgBtn4"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/music"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Sides"
+            android:scaleType="centerInside"
+            android:padding="10dp" />
+
+        <TextView
+            android:id="@+id/btn4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="13sp"
+            android:textColor="#444"
+            android:layout_marginTop="4dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <ImageButton
+            android:id="@+id/imgBtn5"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/cupcake"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Desserts"
+            android:scaleType="centerInside"
+            android:padding="10dp" />
+
+        <TextView
+            android:id="@+id/btn5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="13sp"
+            android:textColor="#444"
+            android:layout_marginTop="4dp" />
+    </LinearLayout>
+
+</LinearLayout>

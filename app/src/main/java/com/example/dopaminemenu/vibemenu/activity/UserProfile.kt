@@ -28,10 +28,7 @@ import java.io.ByteArrayOutputStream
 class UserProfile : AppCompatActivity() {
 
     private lateinit var viewModel: MainViewModel
-    private lateinit var edtCategoryName: EditText
-    private lateinit var edtCategoryDesc: EditText
-    private lateinit var edtCategoryTime: EditText
-    private lateinit var btnAddCategory: Button
+
 
     private lateinit var binding: UserProfileBinding
     private var imageUri: Uri? = null
@@ -53,38 +50,24 @@ class UserProfile : AppCompatActivity() {
         binding.tasks.setText("Tasks Overview")
         binding.statsview.completed.setText("Completed")
         binding.statsview.pending.setText("Pending")
-        binding.addH1.setText("Add Custom Category")
+        binding.addH1.setText("Manage Categories")
         completed = binding.statsview.numcompleted
         pending = binding.statsview.numpending
+        binding.addbtn.setText("Add Custom Category")
+        binding.abt.setText("LEARN ABOUT DOPAMINE MENU")
 
-        viewModel = ViewModelProvider(this)[MainViewModel::class.java]
-
-        edtCategoryName = findViewById(R.id.addcategory)
-        btnAddCategory = findViewById(R.id.addbtn)
-        edtCategoryDesc = findViewById(R.id.addDesc)
-        edtCategoryTime = findViewById(R.id.addtime)
-
-        btnAddCategory.setOnClickListener {
-            val name = edtCategoryName.text.toString().trim()
-            val desc = edtCategoryDesc.text.toString().trim()
-            val time = edtCategoryTime.text.toString().trim()
-
-            if (name.isNotEmpty()) {
-                val category = Category(name = name, desc = desc, time = "0" )
-                viewModel.addCategory(category) { success ->
-                    if (success) {
-                        Toast.makeText(this, "Category added!", Toast.LENGTH_SHORT).show()
-                        edtCategoryName.text.clear()
-                        edtCategoryDesc.text.clear()
-                        edtCategoryTime.text.clear()
-                    } else {
-                        Toast.makeText(this, "Failed to add category", Toast.LENGTH_SHORT).show()
-                    }
-                }
-            } else {
-                Toast.makeText(this, "Enter category name", Toast.LENGTH_SHORT).show()
-            }
+        binding.addbtn.setOnClickListener{
+            val intent = Intent(this, AddCategory::class.java)
+            startActivity(intent)
         }
+
+        binding.categories.btn1.setText("Entress")
+        binding.categories.btn2.setText("Main")
+        binding.categories.btn3.setText("Specials")
+        binding.categories.btn4.setText("Sides")
+        binding.categories.btn5.setText("Desserts")
+
+
 
 
 
