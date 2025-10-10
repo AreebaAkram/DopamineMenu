@@ -110,10 +110,29 @@ class AddActivity : AppCompatActivity() {
             }
         }
     }
-    private fun writeNewActivity(name: String, desc: String, category: Category, state: ActivityState = ActivityState.pending) {
+    private fun writeNewActivity(
+        name: String,
+        desc: String,
+        category: Category,
+        state: ActivityState = ActivityState.pending
+    ) {
+        val userId = com.google.firebase.auth.FirebaseAuth.getInstance().currentUser?.uid
+
+        if (userId == null) {
+            Toast.makeText(this, "User not logged in", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val activityId = database.child("users").child(userId).child("activities").push().key
+        if (activityId == null) {
+            Toast.makeText(this, "Error generating activity ID", Toast.LENGTH_SHORT).show()
+            return
+        }
+
         val activity = Activity(name, desc, category, state)
 
-        database.child("activities").child(name).setValue(activity)
+        database.child("users").child(userId).child("activities").child(activityId)
+            .setValue(activity)
             .addOnSuccessListener {
                 Toast.makeText(this, "Activity added successfully", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, DisplayActivity::class.java)
@@ -125,4 +144,5 @@ class AddActivity : AppCompatActivity() {
                 Toast.makeText(this, "Failed to add activity", Toast.LENGTH_SHORT).show()
             }
     }
+
 }

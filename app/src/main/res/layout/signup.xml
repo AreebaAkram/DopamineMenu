@@ -102,7 +102,6 @@
                 android:id="@+id/loginbtn"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:textColor="#D8A48F"
                 android:textSize="15sp"
                 android:layout_marginTop="12dp"
                 app:layout_constraintBottom_toBottomOf="parent"

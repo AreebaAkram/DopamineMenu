@@ -27,7 +27,6 @@ import java.io.ByteArrayOutputStream
 
 class UserProfile : AppCompatActivity() {
 
-    private lateinit var viewModel: MainViewModel
 
 
     private lateinit var binding: UserProfileBinding
@@ -190,7 +189,10 @@ class UserProfile : AppCompatActivity() {
     }
 
     private fun loadStats() {
-        val activitiesRef = FirebaseDatabase.getInstance().getReference("activities")
+        val userId = FirebaseAuth.getInstance().currentUser?.uid ?: return
+        val activitiesRef = FirebaseDatabase.getInstance().getReference("users")
+            .child(userId)
+            .child("activities")
 
         activitiesRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
