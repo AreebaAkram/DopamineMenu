@@ -3,19 +3,23 @@ package com.example.dopaminemenu.vibemenu.repository
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.dopaminemenu.vibemenu.model.Activity
-import com.example.dopaminemenu.vibemenu.model.Category
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
 
-class AddRepo() {
+class AddRepo {
     private val firebaseDatabase = FirebaseDatabase.getInstance()
 
     fun loadActivities(): LiveData<MutableList<Activity>> {
         val mutableData = MutableLiveData<MutableList<Activity>>()
-        val ref = firebaseDatabase.getReference("activities")
+        val userId = FirebaseAuth.getInstance().currentUser?.uid
+
+        if (userId == null) {
+            mutableData.value = mutableListOf()
+            return mutableData
+        }
+
+        val ref = firebaseDatabase.getReference("users").child(userId).child("activities")
+
         ref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val listData = mutableListOf<Activity>()
@@ -26,10 +30,9 @@ class AddRepo() {
                 mutableData.value = listData
             }
 
-            override fun onCancelled(error: DatabaseError) {
-
-            }
+            override fun onCancelled(error: DatabaseError) {}
         })
+
         return mutableData
     }
 }
