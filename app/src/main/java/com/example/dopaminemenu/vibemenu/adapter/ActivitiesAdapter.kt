@@ -9,24 +9,25 @@ import com.example.dopaminemenu.databinding.TasksActivityBinding
 import com.example.dopaminemenu.vibemenu.model.Activity
 import com.example.dopaminemenu.vibemenu.model.ActivityState
 import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.database
 
-class ActivitiesAdapter(val activities: MutableList<Activity>, private val database : DatabaseReference) :
+class ActivitiesAdapter(
+    val activities: MutableList<Activity>,
+    private val database: DatabaseReference
+) :
     RecyclerView.Adapter<ActivitiesAdapter.ViewHolder>() {
 
 
     private lateinit var context: Context
 
     inner class ViewHolder(val binding: TasksActivityBinding) :
-        RecyclerView.ViewHolder(binding.root){
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Activity) {
             binding.activity = item
             binding.executePendingBindings()
 
-            if(item.state == ActivityState.completed){
+            if (item.state == ActivityState.completed) {
                 binding.taskname.paintFlags = android.graphics.Paint.STRIKE_THRU_TEXT_FLAG
-            }
-            else{
+            } else {
                 binding.taskname.paintFlags = 0
             }
             binding.deletebtn.setOnClickListener {
@@ -36,7 +37,6 @@ class ActivitiesAdapter(val activities: MutableList<Activity>, private val datab
                     return@setOnClickListener
                 }
 
-                // search for activity node by name under current user's activities
                 database.child("users").child(userId).child("activities")
                     .orderByChild("name").equalTo(item.name)
                     .get()
@@ -45,16 +45,17 @@ class ActivitiesAdapter(val activities: MutableList<Activity>, private val datab
                             for (child in snapshot.children) {
                                 child.ref.removeValue()
                             }
-                            // remove locally and update UI
                             activities.remove(item)
                             notifyDataSetChanged()
-                            Toast.makeText(context, "Deleted ${item.name}", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(context, "Deleted ${item.name}", Toast.LENGTH_SHORT)
+                                .show()
                         } else {
                             Toast.makeText(context, "Activity not found", Toast.LENGTH_SHORT).show()
                         }
                     }
                     .addOnFailureListener {
-                        Toast.makeText(context, "Delete failed: ${it.message}", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "Delete failed: ${it.message}", Toast.LENGTH_SHORT)
+                            .show()
                     }
             }
 
@@ -79,7 +80,6 @@ class ActivitiesAdapter(val activities: MutableList<Activity>, private val datab
                 val newState = if (isChecked) ActivityState.completed else ActivityState.pending
                 val completedTime: Long? = if (isChecked) System.currentTimeMillis() else null
 
-                // find the correct child(s) and update fields
                 database.child("users").child(userId).child("activities")
                     .orderByChild("name").equalTo(item.name)
                     .get()
@@ -89,19 +89,22 @@ class ActivitiesAdapter(val activities: MutableList<Activity>, private val datab
                                 child.ref.child("state").setValue(newState.name)
                                 child.ref.child("completedAt").setValue(completedTime)
                             }
-                            // update local model and UI
+
                             item.state = newState
                             item.completedAt = completedTime
                             notifyDataSetChanged()
 
-                            val msg = if (isChecked) "Completed ${item.name}" else "Marked ${item.name} pending"
+                            val msg =
+                                if (isChecked) "Completed ${item.name}" else "Marked ${item.name} pending"
                             Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
                         } else {
-                            Toast.makeText(context, "Activity not found in DB", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(context, "Activity not found in DB", Toast.LENGTH_SHORT)
+                                .show()
                         }
                     }
                     .addOnFailureListener {
-                        Toast.makeText(context, "Update failed: ${it.message}", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "Update failed: ${it.message}", Toast.LENGTH_SHORT)
+                            .show()
                     }
             }
 
@@ -125,7 +128,6 @@ class ActivitiesAdapter(val activities: MutableList<Activity>, private val datab
 //                }}
         }
     }
-
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

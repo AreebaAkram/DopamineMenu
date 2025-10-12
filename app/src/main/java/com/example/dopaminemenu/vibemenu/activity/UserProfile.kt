@@ -7,17 +7,12 @@ import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.util.Base64
-import android.widget.Button
-import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import com.example.dopaminemenu.R
 import com.example.dopaminemenu.databinding.UserProfileBinding
-import com.example.dopaminemenu.vibemenu.model.Category
-import com.example.dopaminemenu.vibemenu.viewmodel.MainViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -26,7 +21,6 @@ import com.google.firebase.database.ValueEventListener
 import java.io.ByteArrayOutputStream
 
 class UserProfile : AppCompatActivity() {
-
 
 
     private lateinit var binding: UserProfileBinding
@@ -56,11 +50,15 @@ class UserProfile : AppCompatActivity() {
         binding.cardstack.delcat.setText("Delete Category")
         binding.abt.setText("LEARN ABOUT DOPAMINE MENU")
 
-        binding.cardstack.cardOne.setOnClickListener{
+        binding.cardstack.cardOne.setOnClickListener {
             val intent = Intent(this, AddCategory::class.java)
             startActivity(intent)
         }
-        binding.abt.setOnClickListener{
+        binding.cardstack.cardTwo.setOnClickListener {
+            val intent = Intent(this, DeleteCategoryActivity::class.java)
+            startActivity(intent)
+        }
+        binding.abt.setOnClickListener {
             val intent = Intent(this, AboutActivity::class.java)
             startActivity(intent)
         }
@@ -73,27 +71,27 @@ class UserProfile : AppCompatActivity() {
         binding.activityname.text = "Profile"
 
 
-        binding.categories.imgBtn1.setOnClickListener{
+        binding.categories.imgBtn1.setOnClickListener {
             val intent = Intent(this, DisplayActivity::class.java)
             intent.putExtra("categoryName", "Entress")
             startActivity(intent)
         }
-        binding.categories.imgBtn2.setOnClickListener{
+        binding.categories.imgBtn2.setOnClickListener {
             val intent = Intent(this, DisplayActivity::class.java)
             intent.putExtra("categoryName", "Main")
             startActivity(intent)
         }
-        binding.categories.imgBtn3.setOnClickListener{
+        binding.categories.imgBtn3.setOnClickListener {
             val intent = Intent(this, DisplayActivity::class.java)
             intent.putExtra("categoryName", "Specials")
             startActivity(intent)
         }
-        binding.categories.imgBtn4.setOnClickListener{
+        binding.categories.imgBtn4.setOnClickListener {
             val intent = Intent(this, DisplayActivity::class.java)
             intent.putExtra("categoryName", "Sides")
             startActivity(intent)
         }
-        binding.categories.imgBtn5.setOnClickListener{
+        binding.categories.imgBtn5.setOnClickListener {
             val intent = Intent(this, DisplayActivity::class.java)
             intent.putExtra("categoryName", "Desserts")
             startActivity(intent)

@@ -1,7 +1,6 @@
 package com.example.dopaminemenu.vibemenu.adapter
 
 import android.content.Context
-import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
