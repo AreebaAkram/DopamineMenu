@@ -1,7 +1,7 @@
 # 🌈 DopeIn — My First Android App
 
 Hey everyone!  
-I’m beyond excited to share **DopeIn**, my **very first Android app** — a small project that turned into something truly special. 💫  
+I’m excited to share **DopeIn**, my **very first Android app** — a small project that turned into something truly special. 💫  
 
 It’s designed to help procrastinators and creatives like me manage their daily dopamine activities — all while learning, exploring, and building from scratch using **Kotlin**.
 
@@ -49,11 +49,12 @@ The goal? To make daily motivation easy, intentional, and a little aesthetic ✨
 
 ## 🧪 How to Test the App
 
-1. Launch the app on your device  
-2. Add new dopamine activities  
-3. Check Firebase for data updates  
-4. Try editing or deleting activities  
-5. Verify UI responsiveness and smooth flow  
+1. Download the APK file.
+2. Launch the app on your device  
+3. Add new dopamine activities  
+4. Check Firebase for data updates  
+5. Try editing or deleting activities  
+6. Verify UI responsiveness and smooth flow  
 
 ---
 
@@ -74,5 +75,4 @@ The goal? To make daily motivation easy, intentional, and a little aesthetic ✨
 
 Developed with 💜 by **Areeba Akram**  
 If you found this inspiring, don’t forget to ⭐ the repo!  
-   ```bash
-   git clone https://github.com/yourusername/DopeIn.git
+
