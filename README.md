@@ -38,7 +38,7 @@ The goal? To make daily motivation easy, intentional, and a little aesthetic ✨
 
 1. **Clone the repository**
      ```bash
-   git clone https://github.com/yourusername/DopeIn.git
+   git clone https://github.com/AreebaAkram/DopeIn.git
 2. **Open the project** in **Android Studio**  
 3. **Connect Firebase** (optional, for database testing)  
 4. **Build and run** the app on:
