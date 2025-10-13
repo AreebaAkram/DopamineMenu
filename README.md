@@ -62,7 +62,7 @@ The goal? To make daily motivation easy, intentional, and a little aesthetic ✨
 
 
 
-| Home Screen | Activity View | Add Task Screen |
+| Home Screen | Activity View | Profile Screen |
 |--------------|----------------|-----------------|
 | ![Home](https://github.com/user-attachments/assets/b08b9867-d8a2-4a01-be34-2a999909368f) | ![View](https://github.com/user-attachments/assets/58dfe5d5-1579-4aa9-81c5-9d0d104df4e2) | ![Add](https://github.com/user-attachments/assets/eb460ec9-e1b4-4bef-82b6-1269e2236cd1) |
 
